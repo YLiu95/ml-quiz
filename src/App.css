@@ -1,38 +1,279 @@
+/* src/App.css */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
 .App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column; /* Stack sidebar on top on mobile */
+}
+
+.topic-list {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Space between sidebar and content on mobile */
+}
+
+.topic-list h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #495057;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 10px;
+}
+
+.topic-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0; /* Space before mode buttons */
+}
+
+.topic-list li {
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.topic-list li:hover {
+  background-color: #dee2e6;
+}
+
+.topic-list li.selected {
+  background-color: #007bff;
   color: white;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.mode-controls button {
+    display: block; /* Stack buttons vertically */
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.mode-controls button:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+.mode-controls button:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+
+.main-content {
+  flex-grow: 1; /* Take remaining space */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-area h3, .reveal-area h3, .mistakes-area h2, .mistake-topic-section h3 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.question-text {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.options-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.options-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.options-list label {
+  display: block; /* Make the whole area clickable */
+  cursor: pointer;
+}
+.options-list input[type="radio"] {
+  margin-right: 10px;
+}
+
+.navigation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.navigation-controls button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navigation-controls button:disabled {
+  background-color: #ced4da;
+  cursor: not-allowed;
+}
+
+.question-jump {
+    display: flex;
+    gap: 5px; /* Space between jump buttons */
+}
+
+.question-jump button {
+    padding: 5px 10px;
+    min-width: 30px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.question-jump button.current-q {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+}
+.question-jump button:hover:not(.current-q) {
+    background-color: #dee2e6;
+}
+
+
+/* Reveal and Mistakes Mode Styles */
+.revealed-question, .mistake-question {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+}
+.revealed-question:last-child, .mistake-question:last-child {
+    border-bottom: none;
+}
+
+.options-list.revealed li {
+    border: none;
+    padding: 5px 0;
+}
+
+.options-list li.correct {
+  color: #28a745; /* Green */
+  font-weight: bold;
+}
+
+.options-list li.incorrect {
+  color: #dc3545; /* Red */
+  text-decoration: line-through;
+}
+
+.options-list li.correct-answer-info {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #28a745;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+
+.mistakes-filters {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 15px; /* Space between filter elements */
+}
+
+.mistakes-filters label {
+    margin-right: 5px;
+}
+.mistakes-filters select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+.mistakes-filters input[type="checkbox"] {
+    margin-right: 5px;
+    vertical-align: middle; /* Align checkbox with label text */
+}
+
+.copy-button {
+    padding: 10px 15px;
+    background-color: #17a2b8; /* Info blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: block; /* Make it take its own line */
+}
+.copy-button:hover {
+    background-color: #138496;
+}
+
+
+/* Responsive Design (Desktop First) */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row; /* Sidebar next to content on desktop */
+    gap: 20px; /* Space between sidebar and content */
   }
-  to {
-    transform: rotate(360deg);
+
+  .topic-list {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    margin-bottom: 0; /* Remove bottom margin on desktop */
+  }
+
+  .main-content {
+     /* Takes up remaining space */
+  }
+
+  .mode-controls button {
+    display: inline-block; /* Buttons side-by-side */
+    width: auto; /* Adjust width automatically */
+    margin-right: 10px; /* Space between buttons */
+    margin-bottom: 0;
+  }
+  .mode-controls button:last-child {
+      margin-right: 0;
+  }
+
+  .mistakes-filters {
+      flex-wrap: nowrap; /* Keep filters on one line */
   }
 }
