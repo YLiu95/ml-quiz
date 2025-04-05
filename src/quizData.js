@@ -14,6 +14,7 @@ export const quizData = [
             "To cluster data points based on density.",
             "To find the hyperplane that maximizes the margin between different classes.",
             "To reduce the dimensionality of the data.",
+            "To make everything nicer",
             "I don't know",
           ],
           correctOptionIndex: 2, // Index of the correct answer in the options array (starts from 0)
