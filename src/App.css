@@ -1,184 +1,286 @@
 /* src/App.css */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #495057;
+  --text-color: #333;
+  --border-color: #dee2e6;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  --white-color: #ffffff;
+  --sidebar-width: 280px; /* Increased width for questions */
+  --header-height: 70px;
+  --footer-height: 50px;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f7f6;
-  color: #333;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column; /* Ensure body takes full height */
+  min-height: 100vh;
+}
+
+#root {
+    flex-grow: 1; /* Allow root to grow */
+    display: flex; /* Make root a flex container */
 }
 
 .App {
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px; /* Allow wider layout */
   margin: 0 auto;
-  padding: 20px;
+  background-color: var(--white-color);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Allow App to grow */
 }
 
-h1 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 30px;
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  background-color: var(--dark-gray);
+  color: var(--white-color);
+  height: var(--header-height);
+  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--white-color); /* Ensure h1 color is white */
+}
+
+.mode-controls-header button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.mode-controls-header button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+.mode-controls-header button:disabled {
+  background-color: var(--secondary-color);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Main Layout */
 .layout {
   display: flex;
-  flex-direction: column; /* Stack sidebar on top on mobile */
+  flex-grow: 1; /* Allow layout to fill remaining space */
+  overflow: hidden; /* Prevent layout from causing body scroll */
 }
 
-.topic-list {
-  background-color: #e9ecef;
+/* Sidebar */
+.topic-list-sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--light-gray);
   padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px; /* Space between sidebar and content on mobile */
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto; /* Enable scrolling for the sidebar */
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  height: calc(100vh - var(--header-height) - var(--footer-height)); /* Calculate height */
 }
 
-.topic-list h2 {
+.topic-list-sidebar h2 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #495057;
-  border-bottom: 1px solid #ced4da;
+  color: var(--dark-gray);
+  font-size: 1.1em;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 10px;
 }
 
-.topic-list ul {
+.topic-list-sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0; /* Space before mode buttons */
+  margin: 0;
 }
 
-.topic-list li {
-  padding: 10px 15px;
+.topic-item {
+  margin-bottom: 15px;
+}
+
+.topic-item strong {
+  display: block;
+  padding: 8px 5px;
   margin-bottom: 5px;
   cursor: pointer;
   border-radius: 4px;
+  font-weight: 600;
   transition: background-color 0.2s ease;
 }
-
-.topic-list li:hover {
-  background-color: #dee2e6;
+.topic-item strong:hover {
+  background-color: var(--medium-gray);
+}
+.topic-item strong.selected-topic-header {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
 }
 
-.topic-list li.selected {
-  background-color: #007bff;
-  color: white;
+.question-links-list {
+  padding-left: 15px; /* Indent question links */
+}
+
+.question-link {
+  padding: 5px;
+  margin-bottom: 3px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  color: #555;
+}
+.question-link:hover {
+  background-color: #d8dde2;
+}
+.question-link.answered-question-link {
+    font-style: italic;
+    color: #777; /* Slightly dimmer for answered */
+}
+.question-link.active-question-link {
+  background-color: var(--primary-color);
+  color: var(--white-color);
   font-weight: bold;
 }
-
-.mode-controls button {
-    display: block; /* Stack buttons vertically */
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.mode-controls button:hover:not(:disabled) {
-    background-color: #5a6268;
-}
-.mode-controls button:disabled {
-    background-color: #adb5bd;
-    cursor: not-allowed;
+.question-link.active-question-link.answered-question-link {
+    /* Keep active style priority */
+    font-style: normal;
 }
 
 
-.main-content {
+/* Main Content Area */
+.main-content-area {
   flex-grow: 1; /* Take remaining space */
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  overflow-y: auto; /* Enable scrolling for the main content */
+   height: calc(100vh - var(--header-height) - var(--footer-height)); /* Calculate height */
 }
 
+.scrollable-content {
+    /* No extra style needed now as parent handles scroll */
+}
+
+.placeholder-text {
+    color: var(--secondary-color);
+    font-style: italic;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Quiz Area Specifics */
 .quiz-area h3, .reveal-area h3, .mistakes-area h2, .mistake-topic-section h3 {
-  color: #007bff;
+  color: var(--primary-color);
   margin-top: 0;
   margin-bottom: 20px;
 }
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.quiz-header h3 {
+    margin: 0; /* Remove default margin */
+}
+.timer-display {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    background-color: var(--light-gray);
+    padding: 5px 10px;
+    border-radius: 15px;
+}
 
 .question-text {
-  font-size: 1.1em;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  font-size: 1.15em;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #222;
 }
 
 .options-list {
   list-style: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .options-list li {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 4px;
+  margin-bottom: 12px;
 }
 
 .options-list label {
-  display: block; /* Make the whole area clickable */
+  display: block;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
   cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.options-list input[type="radio"] {
-  margin-right: 10px;
+.options-list label:hover {
+  border-color: var(--secondary-color);
+  background-color: #fdfdfd;
+}
+.options-list label.selected-option {
+    border-color: var(--primary-color);
+    background-color: #e7f3ff;
 }
 
+.options-list input[type="radio"] {
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* Navigation Controls */
 .navigation-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  border-top: 1px solid #eee;
+  margin-top: 30px;
+  border-top: 1px solid var(--border-color);
   padding-top: 20px;
 }
 
 .navigation-controls button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  padding: 10px 25px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1em;
 }
 
 .navigation-controls button:disabled {
-  background-color: #ced4da;
+  background-color: var(--medium-gray);
+  color: var(--secondary-color);
   cursor: not-allowed;
 }
 
-.question-jump {
-    display: flex;
-    gap: 5px; /* Space between jump buttons */
-}
-
-.question-jump button {
-    padding: 5px 10px;
-    min-width: 30px;
-    background-color: #e9ecef;
-    color: #495057;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.question-jump button.current-q {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    border-color: #007bff;
-}
-.question-jump button:hover:not(.current-q) {
-    background-color: #dee2e6;
-}
-
-
 /* Reveal and Mistakes Mode Styles */
 .revealed-question, .mistake-question {
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 1px dashed #eee;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--border-color);
 }
 .revealed-question:last-child, .mistake-question:last-child {
     border-bottom: none;
@@ -186,94 +288,225 @@ h1 {
 
 .options-list.revealed li {
     border: none;
-    padding: 5px 0;
+    padding: 6px 0;
+    margin-bottom: 5px;
 }
-
+.options-list.revealed li.user-choice {
+    /* Style for user's choice, distinct from correct/incorrect */
+    background-color: #f0f0f0; /* Light background for user choice */
+    border-left: 3px solid var(--secondary-color);
+    padding-left: 10px;
+}
 .options-list li.correct {
-  color: #28a745; /* Green */
+  color: var(--success-color);
   font-weight: bold;
 }
-
 .options-list li.incorrect {
-  color: #dc3545; /* Red */
-  text-decoration: line-through;
+  color: var(--danger-color);
+}
+.options-list li.incorrect.user-choice { /* User chose incorrectly */
+    text-decoration: line-through;
+    border-left-color: var(--danger-color);
+}
+.options-list li.correct.user-choice { /* User chose correctly */
+    border-left-color: var(--success-color);
 }
 
+
 .options-list li.correct-answer-info {
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: bold;
-    color: #28a745;
-    border-top: 1px solid #eee;
+    color: var(--success-color);
+    border-top: 1px solid var(--medium-gray);
     padding-top: 10px;
 }
 
-
 .mistakes-filters {
-    background-color: #f8f9fa;
+    background-color: var(--light-gray);
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    gap: 15px; /* Space between filter elements */
+    flex-wrap: wrap;
+    gap: 20px;
 }
-
 .mistakes-filters label {
     margin-right: 5px;
 }
 .mistakes-filters select {
-    padding: 5px;
+    padding: 8px;
     border-radius: 4px;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
 }
 .mistakes-filters input[type="checkbox"] {
     margin-right: 5px;
-    vertical-align: middle; /* Align checkbox with label text */
+    vertical-align: middle;
 }
 
 .copy-button {
-    padding: 10px 15px;
-    background-color: #17a2b8; /* Info blue */
-    color: white;
+    padding: 10px 18px;
+    background-color: var(--info-color);
+    color: var(--white-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-bottom: 20px;
-    display: block; /* Make it take its own line */
+    margin-bottom: 25px;
+    display: inline-block;
+    transition: background-color 0.2s ease;
 }
 .copy-button:hover {
     background-color: #138496;
 }
 
+/* Footer / Progress Indicators */
+.progress-indicators {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 25px;
+  background-color: var(--medium-gray);
+  border-top: 1px solid var(--border-color);
+  height: var(--footer-height);
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
 
-/* Responsive Design (Desktop First) */
-@media (min-width: 768px) {
+.progress-item {
+  font-size: 0.9em;
+  color: var(--dark-gray);
+}
+.progress-item span {
+  margin: 0 5px;
+}
+.progress-item strong {
+  font-weight: 600;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    align-items: flex-start;
+  }
+  .app-header h1 {
+      margin-bottom: 10px;
+  }
+  .mode-controls-header {
+      margin-top: 5px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around; /* Space out buttons */
+  }
+   .mode-controls-header button {
+       margin-left: 0; /* Remove left margin */
+       flex-grow: 1; /* Allow buttons to grow */
+       margin: 0 3px; /* Add small gap between buttons */
+   }
+
   .layout {
-    flex-direction: row; /* Sidebar next to content on desktop */
-    gap: 20px; /* Space between sidebar and content */
+    flex-direction: column;
+    height: auto; /* Let height be determined by content */
+    overflow: visible; /* Allow normal page scroll */
   }
 
-  .topic-list {
-    flex: 0 0 250px; /* Fixed width for sidebar */
-    margin-bottom: 0; /* Remove bottom margin on desktop */
+  .topic-list-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: 250px; /* Limit height when stacked */
+    height: auto; /* Override fixed height */
+    margin-bottom: 15px;
   }
 
-  .main-content {
-     /* Takes up remaining space */
+  .main-content-area {
+    width: 100%;
+    padding: 15px;
+    height: auto; /* Override fixed height */
+    overflow-y: visible; /* Disable internal scroll */
   }
 
-  .mode-controls button {
-    display: inline-block; /* Buttons side-by-side */
-    width: auto; /* Adjust width automatically */
-    margin-right: 10px; /* Space between buttons */
-    margin-bottom: 0;
+  .progress-indicators {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    align-items: flex-start;
   }
-  .mode-controls button:last-child {
-      margin-right: 0;
+  .progress-item {
+      margin-bottom: 5px;
+      width: 100%;
+      text-align: center;
+  }
+  .progress-item:last-child {
+      margin-bottom: 0;
   }
 
-  .mistakes-filters {
-      flex-wrap: nowrap; /* Keep filters on one line */
+  .quiz-header {
+      flex-direction: column;
+      align-items: flex-start;
   }
+  .timer-display {
+      margin-top: 10px;
+  }
+
+  .navigation-controls button {
+      padding: 8px 15px;
+      font-size: 0.9em;
+  }
+}
+
+/* Style for the new Clear button */
+.mode-controls-header button.clear-button {
+  background-color: var(--danger-color); /* Use danger color */
+  margin-left: 15px; /* Add some space */
+}
+
+.mode-controls-header button.clear-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Adjust responsive style if needed */
+@media (max-width: 768px) {
+  /* ... existing responsive styles ... */
+  .mode-controls-header button.clear-button {
+      margin-left: 3px; /* Adjust spacing for mobile */
+      /* Maybe make it less prominent on mobile if desired */
+      /* background-color: var(--secondary-color); */
+  }
+   /* Ensure buttons still fit */
+  .mode-controls-header button {
+      padding: 8px 10px; /* Slightly reduce padding if needed */
+      font-size: 0.9em;
+  }
+}
+
+/* Style for the Explanation Section */
+.explanation {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #f8f9fa; /* Light background */
+  border-left: 4px solid var(--info-color); /* Add a colored border */
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #454545; /* Slightly darker text */
+}
+
+.explanation strong {
+    color: var(--info-color); /* Match border color */
+    margin-right: 5px;
+}
+
+
+/* Minor adjustments for revealed options clarity */
+.options-list.revealed li {
+    /* Add a bit more space */
+    padding: 8px 0;
+}
+
+.options-list.revealed li.correct:not(.user-choice) {
+    /* Style for correct answers the user *didn't* pick */
+     color: #1a7431; /* Slightly different green maybe */
+     /* font-style: italic; */ /* Optional styling */
 }
