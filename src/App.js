@@ -1,7 +1,7 @@
 // src/App.js
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 // Import the helper function and updated data structure
-import { quizData, DONT_KNOW_INDEX, arraysHaveSameElements } from './quizData';
+import { quizData, DONT_KNOW_INDEX, arraysHaveSameElements, persistQuizData } from './quizData';
 import './App.css';
 
 function formatTime(seconds) {
@@ -60,8 +60,10 @@ function App() {
         return {};
     }
   });
+  // NEW: state to handle current quiz data
+  const [quizDataState, setQuizDataState] = useState(quizData);
 
-  const selectedTopic = quizData.find(topic => topic.id === selectedTopicId);
+  const selectedTopic = quizDataState.find(topic => topic.id === selectedTopicId);
   const currentQuestion = selectedTopic?.questions[currentQuestionIndex];
 
   // --- Effects ---
@@ -96,7 +98,7 @@ function App() {
 
   // --- Calculations ---
   const progressStats = useMemo(() => {
-    const totalOverall = quizData.reduce((sum, topic) => sum + topic.questions.length, 0);
+    const totalOverall = quizDataState.reduce((sum, topic) => sum + topic.questions.length, 0);
     // Finished if the answer array exists and is not empty
     const finishedOverall = Object.keys(userAnswers).filter(qid => Array.isArray(userAnswers[qid]) && userAnswers[qid].length > 0).length;
 
@@ -113,7 +115,7 @@ function App() {
     const percentageOverall = totalOverall > 0 ? Math.round((finishedOverall / totalOverall) * 100) : 0;
     const percentageInTopic = totalInTopic > 0 ? Math.round((finishedInTopic / totalInTopic) * 100) : 0;
     return { finishedOverall, totalOverall, percentageOverall, finishedInTopic, totalInTopic, percentageInTopic };
-  }, [userAnswers, selectedTopic, quizData]);
+  }, [userAnswers, selectedTopic, quizDataState]);
 
   // --- Event Handlers ---
 
@@ -168,7 +170,7 @@ function App() {
   // NEW: Handler to collapse all topics
   const handleCollapseAll = () => {
     const newCollapsed = {};
-    quizData.forEach(topic => {
+    quizDataState.forEach(topic => {
         newCollapsed[topic.id] = true;
     });
     setCollapsedTopics(newCollapsed);
@@ -177,7 +179,7 @@ function App() {
   // NEW: Handler to expand all topics
   const handleExpandAll = () => {
     const newCollapsed = {};
-    quizData.forEach(topic => {
+    quizDataState.forEach(topic => {
         newCollapsed[topic.id] = false;
     });
     setCollapsedTopics(newCollapsed);
@@ -210,10 +212,56 @@ function App() {
     }
   };
 
+  // NEW: Handler to add quizzes from pasted JSON
+  const handleAddQuizzes = () => {
+    const input = window.prompt("Paste JSON for new quiz questions:");
+    if (!input) return;
+    try {
+      const newQuiz = JSON.parse(input);
+      // Minimal format check: must have id, topic, and questions array
+      if (!newQuiz.id || !newQuiz.topic || !Array.isArray(newQuiz.questions)) {
+        throw new Error("Invalid quiz format. Must include id, topic and a questions array.");
+      }
+      // Validate each question for required fields
+      for (const question of newQuiz.questions) {
+        if (!question.id ||
+            !question.difficulty ||
+            !question.text ||
+            !Array.isArray(question.options) ||
+            !Array.isArray(question.correctOptionIndices) ||
+            !question.explanation
+        ) {
+          throw new Error("One or more questions are missing required fields.");
+        }
+      }
+      // Merge newQuiz into quizDataState:
+      setQuizDataState(prev => {
+        const topicIndex = prev.findIndex(topic => topic.id === newQuiz.id);
+        if (topicIndex >= 0) {
+          // Existing topic: append the new questions
+          const updatedTopic = {
+            ...prev[topicIndex],
+            questions: [...prev[topicIndex].questions, ...newQuiz.questions],
+          };
+          const updated = [...prev];
+          updated[topicIndex] = updatedTopic;
+          return updated;
+        } else {
+          // New topic: add new quiz at the top
+          return [newQuiz, ...prev];
+        }
+      });
+      // Persist the new quiz permanently by updating quizData.js.
+      persistQuizData(newQuiz);
+    } catch (e) {
+      window.alert("Error adding quiz questions: " + e.message);
+    }
+  };
+
   // --- Mistakes Logic (Using array comparison) ---
    const getMistakes = () => {
     let mistakes = [];
-    quizData.forEach(topic => {
+    quizDataState.forEach(topic => {
       if (mistakesTopicFilter === 'all' || mistakesTopicFilter === topic.id) {
         let topicMistakes = [];
         topic.questions.forEach((q) => {
@@ -290,6 +338,8 @@ function App() {
        <header className="app-header">
          <h1>ML_quiz</h1>
          <div className="mode-controls-header">
+           {/* NEW: Add Quizzes button to the left */}
+           <button onClick={handleAddQuizzes}>Add Quizzes</button>
              <button onClick={() => setMode('quiz')} disabled={mode === 'quiz' || !selectedTopicId}>Quiz Mode</button>
              <button onClick={() => setMode('reveal')} disabled={mode === 'reveal' || !selectedTopicId}>Reveal Answers</button>
              <button onClick={() => setMode('mistakes')} disabled={mode === 'mistakes'}>View Mistakes</button>
@@ -317,7 +367,7 @@ function App() {
             </button>
           </div>
           <ul>
-            {quizData.map(topic => (
+            {quizDataState.map(topic => (
               <li key={topic.id} className="topic-item">
                 <div className="topic-header">
                   <strong 
@@ -471,7 +521,7 @@ function App() {
                      <label>Filter by Topic: </label>
                     <select value={mistakesTopicFilter} onChange={(e) => setMistakesTopicFilter(e.target.value)}>
                         <option value="all">All Topics</option>
-                        {quizData.map(topic => (<option key={topic.id} value={topic.id}>{topic.topic}</option>))}
+                        {quizDataState.map(topic => (<option key={topic.id} value={topic.id}>{topic.topic}</option>))}
                     </select>
                     <label>
                         <input type="checkbox" checked={includeDontKnow} onChange={(e) => setIncludeDontKnow(e.target.checked)} />

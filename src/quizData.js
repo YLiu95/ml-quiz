@@ -1825,6 +1825,918 @@ export const quizData = [
         correctOptionIndices: [1],
         explanation: "GPT models use a stack of Transformer Decoder layers. They employ masked self-attention, which restricts attention to only previous positions in the sequence. This auto-regressive property makes them suitable for generative tasks, where the model predicts the next token based on the preceding ones.",
       },
+      {
+        "id": "trans-q14",
+        "difficulty": "E",
+        "text": "What is the name of the language model released by Deep Seek in January 2025?",
+        "options": [
+          "R1",
+          "GPT-3",
+          "BERT",
+          "Transformer XL",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The Deep Seek language model is called R1. \nOption explanations:\n• R1: Correct – this is the model released by Deep Seek.\n• GPT-3, BERT, Transformer XL: Incorrect – these are models from other organizations.\n• I don't know: Always provided as a fallback option."
+      },
+      {
+        "id": "trans-q15",
+        "difficulty": "E",
+        "text": "What major improvement did Deep Seek introduce with multi-head latent attention?",
+        "options": [
+          "It reduces the key-value cache size by a factor of 57.",
+          "It increases the embedding dimension by 10 times.",
+          "It eliminates the need for attention mechanisms.",
+          "It adds recurrent connections.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Deep Seek’s multi-head latent attention reduces the key-value cache size by a factor of 57, allowing faster text generation. \nOption explanations:\n• Reduction of key-value cache: Correct – this is exactly the innovation mentioned.\n• Increasing embedding dimension: Incorrect – the change is about cache size, not embedding size.\n• Eliminating attention or adding recurrence: Incorrect – these do not reflect the described innovation."
+      },
+      {
+        "id": "trans-q16",
+        "difficulty": "E",
+        "text": "How many attention heads per layer does Deep Seek R1 have?",
+        "options": [
+          "12",
+          "64",
+          "128",
+          "256",
+          "I don't know"
+        ],
+        "correctOptionIndices": [2],
+        "explanation": "Deep Seek R1 is described as having 128 attention heads per layer. \nOption explanations:\n• 128: Correct – matches the transcript.\n• 12, 64, 256: Incorrect – these are not the numbers stated."
+      },
+      {
+        "id": "trans-q17",
+        "difficulty": "E",
+        "text": "If the input text is tokenized into 9 tokens, what is the size of each attention pattern matrix?",
+        "options": [
+          "9x9",
+          "8x8",
+          "10x10",
+          "Depends on the model",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The attention pattern matrix is always square with dimensions equal to the number of input tokens, so 9 tokens result in a 9x9 matrix. \nOption explanations:\n• 9x9: Correct – this is how attention matrices are computed.\n• Other sizes: Incorrect – they do not match the token count."
+      },
+      {
+        "id": "trans-q18",
+        "difficulty": "E",
+        "text": "What do attention patterns in Transformers represent?",
+        "options": [
+          "The computed dot-product similarities between tokens.",
+          "A fixed positional encoding.",
+          "Only the output tokens.",
+          "The loss values during training.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Attention patterns are matrices computed via dot products between token representations (queries and keys), capturing their similarity. \nOption explanations:\n• Dot-product similarities: Correct – that is the fundamental idea in attention.\n• Positional encoding, outputs, loss values: Incorrect – these are unrelated to the dot product computation in attention."
+      },
+      {
+        "id": "trans-q19",
+        "difficulty": "E",
+        "text": "How does a Transformer generate a response given a prompt?",
+        "options": [
+          "It generates one token at a time in an autoregressive manner.",
+          "It generates the entire response simultaneously.",
+          "It selects a pre-defined response from a list.",
+          "It uses recurrence over all tokens.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Transformers generate text autoregressively, producing one token at a time where each token depends on the tokens before it. \nOption explanations:\n• One token at a time: Correct – this describes the autoregressive mechanism.\n• Entire response simultaneously or pre-defined responses: Incorrect – these do not apply.\n• Recurrence: Incorrect – Transformers do not use recurrent connections."
+      },
+      {
+        "id": "trans-q20",
+        "difficulty": "E",
+        "text": "What is the role of the learned weight matrices (WQ, WK, WV) in attention?",
+        "options": [
+          "They transform the input token representations into queries, keys, and values.",
+          "They store the attention patterns permanently.",
+          "They add positional encoding to the tokens.",
+          "They compute the loss during training.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Learned weights WQ, WK, and WV are used to transform the input matrix into the query, key, and value matrices. \nOption explanations:\n• Transformation role: Correct – they perform linear transformations on the input.\n• Storing patterns, adding encoding, computing loss: Incorrect – these are not the roles of these matrices."
+      },
+      {
+        "id": "trans-q21",
+        "difficulty": "E",
+        "text": "Which operation normalizes the computed attention scores in a Transformer?",
+        "options": [
+          "Division by the square root of the embedding dimension and softmax.",
+          "Batch normalization.",
+          "Using a ReLU activation.",
+          "Multiplication by a constant factor.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "After computing raw attention scores, they are scaled (divided by the square root of the embedding dimension) and then normalized with a softmax. \nOption explanations:\n• Division and softmax: Correct – this is the standard normalization procedure.\n• Batch normalization, ReLU, constant multiplication: Incorrect – these do not apply to attention score normalization."
+      },
+      {
+        "id": "trans-q22",
+        "difficulty": "E",
+        "text": "What is the purpose of masking in the attention computation during training?",
+        "options": [
+          "To prevent the model from using future tokens.",
+          "To increase the number of parameters.",
+          "To speed up training by skipping layers.",
+          "To enhance the embedding size.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Masking is applied to ensure that, during autoregressive training, the model cannot attend to future tokens (i.e., tokens that have not yet been generated). \nOption explanations:\n• Prevent future leakage: Correct – this keeps training causal.\n• Other options: Incorrect – they do not describe the purpose of masking."
+      },
+      {
+        "id": "trans-q23",
+        "difficulty": "E",
+        "text": "What is KV caching in the context of Transformer models?",
+        "options": [
+          "Storing previously computed key and value matrices for reuse.",
+          "Caching the entire output of the network.",
+          "Recomputing keys and values for every token from scratch.",
+          "Caching only the queries.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "KV caching involves storing the keys and values (but not queries) computed for previous tokens, which avoids redundant calculations during autoregressive inference. \nOption explanations:\n• Storing keys and values: Correct – that is the essence of KV caching.\n• Other options: Incorrect – either misrepresent what is cached or contradict the idea of caching."
+      },
+      {
+        "id": "trans-q24",
+        "difficulty": "E",
+        "text": "How many total attention patterns are computed in the GPT-2 small model?",
+        "options": [
+          "144",
+          "128",
+          "61",
+          "7,808",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "GPT-2 small uses 12 attention heads per layer and 12 layers, resulting in 144 attention patterns. \nOption explanations:\n• 144: Correct – calculated as 12 * 12.\n• Other numbers: Incorrect – they refer to figures mentioned for Deep Seek R1 or other dimensions."
+      },
+      {
+        "id": "trans-q25",
+        "difficulty": "E",
+        "text": "What is the embedding dimension of GPT-2 small as mentioned in the transcript?",
+        "options": [
+          "768",
+          "7168",
+          "64",
+          "512",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "GPT-2 small uses an embedding dimension of 768. \nOption explanations:\n• 768: Correct – this is the value stated in the transcript.\n• 7168: Incorrect – that is the embedding dimension for Deep Seek R1.\n• Other options: Incorrect."
+      },
+      {
+        "id": "trans-q26",
+        "difficulty": "E",
+        "text": "What is the dimension of the query and key vectors produced in GPT-2 small?",
+        "options": [
+          "64",
+          "128",
+          "768",
+          "9",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "In GPT-2 small, after multiplying by the weight matrices, each query and key vector has a dimension of 64. \nOption explanations:\n• 64: Correct – as per the computation details.\n• Other numbers: Incorrect – they represent other model parameters."
+      },
+      {
+        "id": "trans-q27",
+        "difficulty": "E",
+        "text": "What role do query and key dot products play in Transformer attention?",
+        "options": [
+          "They measure the similarity between token representations.",
+          "They encode positional information.",
+          "They determine the model’s loss function.",
+          "They control the learning rate.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The dot product between queries and keys yields a score that indicates how similar or relevant the tokens are to each other. \nOption explanations:\n• Similarity measure: Correct – that is the purpose of the dot product here.\n• Other options: Incorrect – they describe unrelated functions."
+      },
+      {
+        "id": "trans-q28",
+        "difficulty": "E",
+        "text": "What advantage does Deep Seek R1 have over a traditional Transformer in terms of text generation speed?",
+        "options": [
+          "It generates text more than six times faster.",
+          "It reduces the number of parameters by 90%.",
+          "It utilizes a recurrent network for generation.",
+          "It processes all tokens simultaneously.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Deep Seek R1 is able to generate text more than six times faster due to its innovative multi-head latent attention and KV caching. \nOption explanations:\n• Six times faster: Correct – this is the improvement claimed.\n• Other options: Incorrect – they do not correspond to the described speed advantage."
+      },
+      {
+        "id": "trans-q29",
+        "difficulty": "E",
+        "text": "How is the value matrix computed in the attention mechanism?",
+        "options": [
+          "By multiplying the input matrix X with the learned weight matrix WV.",
+          "By adding the key and query matrices.",
+          "By transposing the query matrix.",
+          "By applying a softmax to the input vectors.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The value matrix is computed by multiplying the input matrix X with the learned weight matrix WV. \nOption explanations:\n• Multiplication with WV: Correct – that is the defined operation.\n• Other options: Incorrect – they do not describe the correct computation."
+      },
+      {
+        "id": "trans-q30",
+        "difficulty": "E",
+        "text": "When using KV caching during generation, which aspect is NOT recomputed?",
+        "options": [
+          "The keys for previous tokens.",
+          "The queries for the new token.",
+          "The value matrix for previous tokens.",
+          "The new token’s query vector.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 2],
+        "explanation": "KV caching stores the keys and values for previous tokens so they do not need to be recomputed on each new token generation. \nOption explanations:\n• Keys for previous tokens and previous values: Correct – these are cached.\n• New token’s query and its computation: Not cached and must be computed, hence not correct choices."
+      },
+      {
+        "id": "trans-q31",
+        "difficulty": "E",
+        "text": "What does a high dot product value between a token’s query and another token’s key suggest?",
+        "options": [
+          "A strong relevance or relationship between the tokens.",
+          "That the tokens are in different sentences.",
+          "A failure in the attention mechanism.",
+          "That the tokens have been misaligned.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "A high dot product indicates that the tokens are considered highly related or relevant. \nOption explanations:\n• Strong relevance: Correct – that is the intended interpretation.\n• Other options: Incorrect – they describe unrelated outcomes."
+      },
+      {
+        "id": "trans-q32",
+        "difficulty": "E",
+        "text": "In the attention mechanism, what does each row of the query matrix represent?",
+        "options": [
+          "A query for an input token.",
+          "The final output token.",
+          "The positional encoding.",
+          "A residual connection.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Each row of the query matrix corresponds to the query vector for a specific input token. \nOption explanations:\n• Query vector: Correct – it represents the current token’s query.\n• Others: Incorrect – they are not descriptions of query matrix rows."
+      },
+      {
+        "id": "trans-q33",
+        "difficulty": "E",
+        "text": "What computational challenge is associated with the attention mechanism as input length increases?",
+        "options": [
+          "Quadratic scaling of computations with respect to the number of input tokens.",
+          "Linear scaling of memory usage.",
+          "Exponential growth in model parameters.",
+          "Decreasing accuracy over time.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Since the attention matrix is of size n×n, where n is the number of tokens, the number of computations scales quadratically as the sequence length increases. \nOption explanations:\n• Quadratic scaling: Correct – this is the core challenge in attention computation.\n• Other options: Incorrect – they do not accurately describe the computational complexity."
+      },
+      {
+        "id": "trans-q34",
+        "difficulty": "M",
+        "text": "Which choice or choices are correct regarding the learned weight matrices involved in computing attention scores?",
+        "options": [
+          "WQ transforms the input to generate queries.",
+          "WK transforms the input to generate keys.",
+          "WV computes positional encodings.",
+          "They are used to compute the model loss.",
+          "They are fixed and not learned.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1],
+        "explanation": "WQ and WK are the learned weight matrices that transform the input into queries and keys respectively, which are then used for computing attention scores. \nOption explanations:\n• WQ and WK: Correct – these matrices are essential for generating queries and keys.\n• WV: Incorrect in this context as it is used to generate the value matrix, not positional encodings.\n• Loss computation and fixed weights: Incorrect – all weights in these projections are learned."
+      },
+      {
+        "id": "trans-q35",
+        "difficulty": "M",
+        "text": "What operations transform the input matrix X into the query and key matrices in a Transformer?",
+        "options": [
+          "Matrix multiplication with the learned weight matrices WQ and WK.",
+          "Element-wise addition with bias vectors.",
+          "Concatenation with positional encodings.",
+          "Application of a convolutional filter.",
+          "Use of recurrent neural networks.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The input matrix X is transformed into the query and key matrices by multiplying it with the learned weight matrices WQ and WK. \nOption explanations:\n• Matrix multiplication: Correct – that is the method used.\n• Other options: Incorrect – they are not used for this transformation in standard Transformers."
+      },
+      {
+        "id": "trans-q36",
+        "difficulty": "M",
+        "text": "Which choice or choices are correct regarding the significance of high dot product values between queries and keys?",
+        "options": [
+          "They indicate a strong relation or similarity between tokens.",
+          "They signify that the tokens are from different sentences.",
+          "They will always lead to a low softmax output.",
+          "They identify tokens that may influence each other during prediction.",
+          "They are used to determine the eventual attention weights.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 3, 4],
+        "explanation": "High dot product values suggest that tokens are similar or related, causing them to potentially influence each other during prediction when the attention weights are computed. \nOption explanations:\n• High similarity and influence: Correct – these are the intended outcomes of high dot product values.\n• Other options: Incorrect – they either introduce unrelated notions or misinterpret softmax behavior."
+      },
+      {
+        "id": "trans-q37",
+        "difficulty": "M",
+        "text": "Which choice or choices are correct regarding the sequential steps to compute an attention pattern?",
+        "options": [
+          "Computing dot products between queries and keys.",
+          "Applying a masking operation to prevent future token leakage.",
+          "Dividing the result by the square root of the embedding dimension.",
+          "Using a softmax to normalize the scores.",
+          "Multiplying by the final learned weight matrix Wo immediately.",
+          "Using an average pooling operation at the start.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 3],
+        "explanation": "The process involves computing dot products, applying a mask to enforce causality, scaling the results, and normalizing with softmax. \nOption explanations:\n• Dot product, masking, scaling, and softmax: Correct – these steps are performed in order.\n• Multiplying by Wo occurs later after processing values, and average pooling is not part of the attention computation."
+      },
+      {
+        "id": "trans-q38",
+        "difficulty": "M",
+        "text": "What is the purpose of multiplying the attention pattern by the value matrix in the Transformer?",
+        "options": [
+          "To produce a weighted sum of value vectors based on attention scores.",
+          "To update the learned weight matrices dynamically.",
+          "To normalize the queries.",
+          "To perform element-wise addition with positional encodings.",
+          "To compute the loss for backpropagation.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Multiplying the attention pattern by the value matrix yields a weighted sum that integrates information from relevant tokens based on the computed attention scores. \nOption explanations:\n• Weighted sum: Correct – it combines information according to the attention distribution.\n• Other options: Incorrect – they do not describe this step."
+      },
+      {
+        "id": "trans-q39",
+        "difficulty": "M",
+        "text": "Which choice or choices correctly explain how Deep Seek achieves a significant speed improvement in text generation?",
+        "options": [
+          "Reducing the key-value cache size by a factor of 57.",
+          "Employing KV caching to reuse computed keys and values.",
+          "Increasing the number of attention heads without any change in computation.",
+          "Using multi-head latent attention to modify the Transformer core.",
+          "Switching to a recurrent architecture.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "Deep Seek’s speed improvements stem from reducing the key-value cache size, using KV caching, and introducing multi-head latent attention to optimize the core Transformer computation. \nOption explanations:\n• Reduction in cache size, KV caching, and multi-head latent attention: Correct – they are central to the improvement.\n• Increasing heads without optimization and recurrent architecture: Incorrect – these do not contribute to the speedup as described."
+      },
+      {
+        "id": "trans-q40",
+        "difficulty": "M",
+        "text": "What is the role of the final learned weight matrix Wo in the attention block?",
+        "options": [
+          "It combines the outputs of all attention heads.",
+          "It is used to compute the initial queries.",
+          "It applies the masking operation.",
+          "It normalizes the value matrix.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The final learned weight matrix Wo is applied after concatenating the outputs from all attention heads, to transform the combined result. \nOption explanations:\n• Combining head outputs: Correct – that is its role.\n• Other options: Incorrect – they describe operations from earlier in the attention pipeline."
+      },
+      {
+        "id": "trans-q41",
+        "difficulty": "M",
+        "text": "Which choice or choices correctly describe KV caching techniques in Transformers?",
+        "options": [
+          "It involves caching the computed keys of previous tokens.",
+          "It involves caching the computed value matrix for previous tokens.",
+          "It caches the query vectors for faster computation.",
+          "It reduces unnecessary recomputation during autoregressive inference.",
+          "It eliminates the need for masking.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "KV caching stores keys and values from prior computations, which reduces computational load during autoregressive generation by avoiding redundant operations. \nOption explanations:\n• Caching keys, values, and reducing recomputation: Correct – these points are central to KV caching.\n• Caching queries or eliminating masking: Incorrect – queries are computed for new tokens and masking remains necessary."
+      },
+      {
+        "id": "trans-q42",
+        "difficulty": "M",
+        "text": "Why are multiple attention heads used in the Transformer architecture?",
+        "options": [
+          "They allow the model to attend to different types of relationships in the input.",
+          "They enable parallel processing of token interactions.",
+          "They replicate the same computation to increase redundancy.",
+          "They help in capturing positional information explicitly.",
+          "They reduce the overall computational cost.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1],
+        "explanation": "Multiple attention heads allow the model to focus on different aspects of the input and process token interactions in parallel. \nOption explanations:\n• Diverse focus and parallel processing: Correct – these are the main benefits of multi-head attention.\n• Replication, explicit positional encoding, and cost reduction: Incorrect – they do not accurately describe the purpose of multiple heads."
+      },
+      {
+        "id": "trans-q43",
+        "difficulty": "M",
+        "text": "Which choice or choices correctly determine the size of an attention pattern matrix?",
+        "options": [
+          "The number of input tokens.",
+          "The embedding dimension of the model.",
+          "The number of attention heads.",
+          "The dimension of the value matrix.",
+          "The number of layers in the model.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The attention pattern matrix is square and its size is determined by the number of input tokens (n×n), independent of embedding dimensions or number of heads. \nOption explanations:\n• Number of input tokens: Correct – that defines the matrix’s dimensions.\n• Other options: Incorrect – they influence other aspects of the model but not the size of the attention matrix."
+      },
+      {
+        "id": "trans-q44",
+        "difficulty": "M",
+        "text": "What is the embedding dimension used in Deep Seek R1?",
+        "options": [
+          "768",
+          "7168",
+          "512",
+          "1024",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [1],
+        "explanation": "Deep Seek R1 uses an embedding dimension of 7168. \nOption explanations:\n• 7168: Correct – as stated in the transcript.\n• Other options: Incorrect – they correspond to different models or are arbitrary."
+      },
+      {
+        "id": "trans-q45",
+        "difficulty": "M",
+        "text": "What is the primary role of the masking operation in computing the attention pattern?",
+        "options": [
+          "It prevents the model from accessing future tokens in the sequence.",
+          "It increases the numerical stability of the softmax.",
+          "It blends positional encodings with token embeddings.",
+          "It determines which tokens are dropped during dropout.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Masking ensures that, during the autoregressive generation, tokens cannot attend to future tokens, maintaining the causal structure of the sequence. \nOption explanations:\n• Preventing future access: Correct – that is the intended function of masking.\n• Other options: Incorrect – they do not capture the core purpose of masking."
+      },
+      {
+        "id": "trans-q46",
+        "difficulty": "M",
+        "text": "Why is the result of the dot product in attention divided by the square root of the embedding dimension?",
+        "options": [
+          "To prevent the softmax function from saturating.",
+          "To decrease the computational cost.",
+          "To improve the resolution of the key signals.",
+          "To ensure the output matrix is square.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Dividing by the square root of the embedding dimension scales the dot product values, preventing overly large values that would saturate the softmax and hinder the learning process. \nOption explanations:\n• Preventing saturation: Correct – that is the primary reason for the scaling factor.\n• Other options: Incorrect – they misrepresent the purpose of the division."
+      },
+      {
+        "id": "trans-q47",
+        "difficulty": "M",
+        "text": "When a new token is generated during autoregressive text generation, which part of the attention pattern remains unchanged?",
+        "options": [
+          "The upper left submatrix corresponding to previous tokens.",
+          "The entire attention pattern is recomputed.",
+          "The new token’s row and column.",
+          "The positional encoding component.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The upper left part of the attention matrix—representing the interactions between all previously processed tokens—remains unchanged, as only the new token’s interactions need to be computed. \nOption explanations:\n• Upper left submatrix: Correct – this is reused from previous computations.\n• Other options: Incorrect – they do not accurately reflect the behavior of KV caching."
+      },
+      {
+        "id": "trans-q48",
+        "difficulty": "M",
+        "text": "Which choice or choices are correct regarding what is stored in KV caching to optimize computation?",
+        "options": [
+          "Previously computed key matrices.",
+          "Previously computed value matrices.",
+          "Previously computed query matrices.",
+          "The final combined matrix after Wo.",
+          "The masked attention pattern.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1],
+        "explanation": "KV caching stores the keys and values from previous tokens to avoid redundant recomputation during inference. \nOption explanations:\n• Keys and values: Correct – only these matrices are cached.\n• Queries or final matrices: Incorrect – queries must be computed for each new token, and the final matrix is not cached."
+      },
+      {
+        "id": "trans-q49",
+        "difficulty": "M",
+        "text": "What computational challenge is posed by chat GPT's maximum context length?",
+        "options": [
+          "The attention pattern computation scales quadratically with token count.",
+          "The recurrent network depth increases.",
+          "The embedding dimension doubles.",
+          "The number of layers is reduced.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "As the context length increases, the attention pattern matrix grows quadratically, which poses a significant computational challenge. \nOption explanations:\n• Quadratic scaling: Correct – this is a key issue in handling long contexts.\n• Other options: Incorrect – they do not address the challenge of increased sequence length."
+      },
+      {
+        "id": "trans-q50",
+        "difficulty": "M",
+        "text": "How do Transformers prevent 'cheating' by looking ahead at future tokens during training?",
+        "options": [
+          "By applying a masking operation to the upper right portion of the attention matrix.",
+          "By shuffling input tokens randomly.",
+          "By using bidirectional attention.",
+          "By limiting the number of model layers.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "Masking the upper right portion of the attention matrix prevents tokens from attending to future tokens, which is essential for autoregressive training. \nOption explanations:\n• Masking future tokens: Correct – this is the standard technique used.\n• Other options: Incorrect – they do not prevent future token leakage."
+      },
+      {
+        "id": "trans-q51",
+        "difficulty": "M",
+        "text": "What effect does the softmax function have on the attention scores?",
+        "options": [
+          "It normalizes the scores into a probability distribution.",
+          "It scales down the gradient magnitudes.",
+          "It introduces non-linearity to the positional encodings.",
+          "It increases the computational complexity.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0],
+        "explanation": "The softmax function converts raw attention scores into a probability distribution, where each row sums up to one. \nOption explanations:\n• Normalization to probabilities: Correct – this is its role in the attention mechanism.\n• Other options: Incorrect – they do not capture the essence of softmax in this context."
+      },
+      {
+        "id": "trans-q52",
+        "difficulty": "M",
+        "text": "Which choice or choices correctly describe a step that leverages data-dependent weights in processing inputs in attention?",
+        "options": [
+          "Multiplying the attention pattern by the value matrix.",
+          "Computing the dot products between queries and keys.",
+          "Using the same weight matrices for all tokens.",
+          "Applying a fixed normalization constant.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1],
+        "explanation": "Both the dot product computation and the subsequent multiplication with the value matrix directly use data-dependent information to process inputs. \nOption explanations:\n• Dot products and value multiplication: Correct – they integrate data-specific interactions.\n• Other options: Incorrect – they either miss the data dependency or describe fixed operations."
+      },
+      {
+        "id": "trans-q53",
+        "difficulty": "M",
+        "text": "Which choice or choices correctly capture the concept of avoiding redundant computations in autoregressive models?",
+        "options": [
+          "Storing and reusing keys and values in KV caching.",
+          "Recomputing the entire attention pattern for every new token.",
+          "Using a caching mechanism for previous token interactions.",
+          "Ignoring earlier token representations.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 2],
+        "explanation": "By caching previously computed keys and values, autoregressive models avoid recomputing the entire attention pattern on each new token, thereby optimizing efficiency. \nOption explanations:\n• Caching and reusing previous computations: Correct – these choices describe the effective mechanism.\n• Other options: Incorrect – they either describe the opposite approach or are irrelevant."
+      },
+      {
+        "id": "trans-q54",
+        "difficulty": "H",
+        "text": "Which choice or choices are integral operations in the Transformer attention mechanism's computation pipeline?",
+        "options": [
+          "Computing dot-product similarities between queries and keys.",
+          "Applying a masking operation to enforce causality.",
+          "Dividing by the square root of the embedding dimension.",
+          "Normalizing scores using softmax.",
+          "Multiplying by the final weight matrix Wo after head concatenation.",
+          "Adding positional encodings before the attention computation.",
+          "Using dropout after the softmax.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 3, 4],
+        "explanation": "The core operations in the attention pipeline include computing dot products, applying a mask to maintain the autoregressive property, scaling (division), normalizing with softmax, and finally combining head outputs with Wo. \nOption explanations:\n• Options 0–4: Correct – they are fundamental to attention.\n• Positional encodings and dropout, while important elsewhere, are not integral to the direct computation of the attention pattern."
+      },
+      {
+        "id": "trans-q55",
+        "difficulty": "H",
+        "text": "In re-computing the attention pattern for a new token during autoregressive generation, which choice or choices correctly describe the steps taken?",
+        "options": [
+          "Compute the dot product between the new token's query and all cached keys.",
+          "Recompute the entire attention matrix from scratch.",
+          "Update only the bottom row corresponding to the new token.",
+          "Reuse the top-left submatrix from the previous attention pattern.",
+          "Calculate a new column for the new token using cached queries.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 2, 3],
+        "explanation": "For a new token, only its interactions (typically the bottom row) are computed by taking the dot product with cached keys while reusing the previously computed submatrix. \nOption explanations:\n• Options 0, 2, and 3: Correct – they accurately describe the efficient update using KV caching.\n• Recomputing the entire matrix or calculating a new column (when not needed) is not performed."
+      },
+      {
+        "id": "trans-q56",
+        "difficulty": "H",
+        "text": "Which choice or choices best explain the purpose of splitting the attention mechanism into multiple heads?",
+        "options": [
+          "To allow specialization on different aspects of the input tokens.",
+          "To perform parallel computations on token relationships.",
+          "To solely increase the overall number of parameters.",
+          "To capture diverse semantic and syntactic relationships.",
+          "To implement recurrent connections in parallel.",
+          "To simplify the masking process.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "Multiple heads enable the model to attend to different types of relationships and capture diverse features by processing token interactions in parallel. \nOption explanations:\n• Specialization, parallel processing, and capturing diverse relationships: Correct – they denote the benefits of multi-head attention.\n• Increasing parameters, recurrent connections, or simplifying masking: Incorrect – these do not correctly explain why splitting into heads is done."
+      },
+      {
+        "id": "trans-q57",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly explain the role of scaling (division by the square root of the embedding dimension) in attention computation?",
+        "options": [
+          "It prevents the softmax function from saturating due to large dot product values.",
+          "It stabilizes gradients during training.",
+          "It reduces the complexity of the matrix multiplication.",
+          "It makes the attention scores invariant to dimensionality.",
+          "It is necessary for masking to be effective.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "Scaling is used to prevent the softmax from saturating, stabilize gradients, and maintain consistency regardless of embedding dimension. \nOption explanations:\n• Prevent saturation, stabilize gradients, and invariance: Correct – these describe the benefits of scaling.\n• Matrix multiplication complexity and masking effectiveness: Incorrect – they do not relate to the purpose of scaling."
+      },
+      {
+        "id": "trans-q58",
+        "difficulty": "H",
+        "text": "During training, why is it critical to apply masking to the dot product matrix in attention computation?",
+        "options": [
+          "To prevent the model from accessing future token information.",
+          "To reduce computational cost by zeroing out half the matrix.",
+          "To enforce the autoregressive property for correct next-token prediction.",
+          "To allow the softmax to operate on only relevant data.",
+          "To balance the dot product values across tokens.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 2, 3],
+        "explanation": "Masking is essential to enforce causality by preventing future token access, which in turn ensures that the softmax operates only on the allowed parts of the sequence for accurate prediction. \nOption explanations:\n• Options 0, 2, and 3: Correct – they capture the reasons for using masking.\n• Reducing computational cost or balancing values are not the primary objectives."
+      },
+      {
+        "id": "trans-q59",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly describe the mathematical properties leading to quadratic scaling in attention mechanisms?",
+        "options": [
+          "The attention matrix is computed as an n×n matrix, with n being the number of tokens.",
+          "Every token's query is compared with every token's key.",
+          "The embedding dimension increases exponentially with token count.",
+          "Matrix multiplication inherently scales quadratically.",
+          "The process involves repeated iterations over each pair of tokens.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1, 4],
+        "explanation": "Quadratic scaling arises because each token's query is compared with every token's key, resulting in an n×n matrix and iterating over token pairs. \nOption explanations:\n• Options 0, 1, and 4: Correct – they explain how the computation inherently scales.\n• Exponential embedding dimension and general matrix multiplication ambiguity: Incorrect explanations."
+      },
+      {
+        "id": "trans-q60",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly indicate the components computed using learned weight matrices in the Transformer’s attention block?",
+        "options": [
+          "The query matrix from the input.",
+          "The key matrix from the input.",
+          "The value matrix from the input.",
+          "The final output produced after stacking heads.",
+          "The masking matrix.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1, 2, 3],
+        "explanation": "Learned weight matrices are used to compute the query, key, and value matrices initially and later the final output is computed by multiplying the concatenated head outputs with a learned weight matrix Wo. \nOption explanations:\n• Options 0 through 3: Correct – they cover the computed components.\n• The masking matrix is not computed through a learned weight matrix; it's applied as a fixed operation."
+      },
+      {
+        "id": "trans-q61",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly describe mechanisms that help Transformers handle very long sequences efficiently?",
+        "options": [
+          "KV caching to store previously computed keys and values.",
+          "Reusing unchanged attention submatrices for previous tokens.",
+          "Computing the entire attention matrix anew for each token.",
+          "Limiting the context length to avoid quadratic scaling.",
+          "Splitting attention into multiple specialized heads.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1, 4],
+        "explanation": "KV caching and reusing unchanged submatrices greatly enhance efficiency for long sequences; while specialization via multiple heads can improve representation, it doesn’t directly address recomputation. \nOption explanations:\n• Options 0, 1, and 4: Correct – these help in efficiently processing long sequences.\n• Recomputing the entire matrix and arbitrarily limiting context are not efficient strategies."
+      },
+      {
+        "id": "trans-q62",
+        "difficulty": "H",
+        "text": "When generating a new token, which choice or choices describe the dependencies for computing its attention pattern?",
+        "options": [
+          "The new token’s query vector is computed from the new input.",
+          "Cached key vectors from previous tokens are reused.",
+          "A new value matrix is computed from scratch for all tokens.",
+          "Only the cached keys are used, ignoring new queries.",
+          "The final output is independent of previous tokens.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1],
+        "explanation": "For a new token, its query is computed freshly while the keys (and previously computed values) are reused through caching to compute its attention pattern. \nOption explanations:\n• Options 0 and 1: Correct – they accurately capture the dependency in the update process.\n• Other options: Incorrect – they misrepresent how new token processing occurs."
+      },
+      {
+        "id": "trans-q63",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly describe Deep Seek R1's design choices that reduce computational bottlenecks compared to standard Transformers?",
+        "options": [
+          "Implementation of multi-head latent attention to reduce key-value cache size.",
+          "Utilization of KV caching to avoid redundant computation.",
+          "Increasing the number of layers without any modifications.",
+          "Expanding the attention heads while applying efficient computation strategies.",
+          "Employing recurrent neural networks to bypass attention.",
+          "I don't know",
+          "Extra option"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "Deep Seek R1 uses multi-head latent attention to reduce cache size and KV caching to avoid recomputations along with increasing the number of heads in an efficient manner. \nOption explanations:\n• Options 0, 1, and 3: Correct – these techniques specifically target computational bottlenecks.\n• Options involving unmodified layer increases or recurrent networks: Incorrect – they are not part of the described innovations."
+      },
+      {
+        "id": "trans-q64",
+        "difficulty": "H",
+        "text": "In the equation computing the attention pattern, why is the result divided by the square root of the embedding dimension, and what can happen if this scaling factor is omitted?",
+        "options": [
+          "It prevents the values from becoming too large, which would saturate the softmax.",
+          "It stabilizes the gradients during backpropagation.",
+          "It ensures that the dot products are comparable across different dimensions.",
+          "It reduces the overall model size.",
+          "It increases the number of training iterations needed.",
+          "It adjusts for the variance of the input features.",
+          "It is required for the masking operation to work properly.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 5],
+        "explanation": "Dividing by the square root of the embedding dimension prevents the dot product values from growing too large, which could cause the softmax to saturate. This scaling also stabilizes the gradients, ensures comparability across dimensions, and adjusts for input variance. \nOption explanations:\n• Options 0, 1, 2, and 5: Correct – these reasons explain the role and consequence of the scaling factor.\n• Options 3, 4, and 6: Incorrect – they do not capture the main mathematical rationale behind the scaling."
+      },
+      {
+        "id": "trans-q65",
+        "difficulty": "H",
+        "text": "During the computation of the attention pattern, which choice or choices correctly describe the role and effect of the masking operation?",
+        "options": [
+          "It zeros out the upper right portion of the dot-product matrix.",
+          "It prevents the model from accessing future tokens.",
+          "It enhances the values in the lower left portion of the matrix.",
+          "It ensures that the softmax only considers past tokens.",
+          "It scales the attention scores by a fixed factor.",
+          "It eliminates noise from the token embeddings.",
+          "It standardizes the distribution of the attention weights.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 3],
+        "explanation": "Masking zeros out the upper right portion of the matrix, thereby preventing the model from accessing future tokens and ensuring that softmax normalization only accounts for allowed token positions. \nOption explanations:\n• Options 0, 1, and 3: Correct – these clearly describe the masking operation and its effects.\n• Other options: Incorrect – they introduce effects not associated with masking in attention."
+      },
+      {
+        "id": "trans-q66",
+        "difficulty": "H",
+        "text": "Given an input of n tokens and an embedding dimension d, with WQ and WK of dimensions d × k, what is the shape of the computed attention pattern matrix and what is its computational complexity?",
+        "options": [
+          "The queries and keys become matrices of shape n × k.",
+          "The attention pattern matrix is of shape n × n.",
+          "Its computation has complexity O(n² · k).",
+          "Its computation has complexity O(n · d).",
+          "The attention matrix scales linearly with n.",
+          "It has complexity O(n³).",
+          "It is independent of n.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2],
+        "explanation": "Multiplying the input X (n × d) by WQ and WK yields queries and keys of shape n × k. The dot product between these matrices produces an n × n attention matrix, and since each of the n tokens is compared with every other token (with inner dimension k), the complexity is O(n² · k). \nOption explanations:\n• Options 0, 1, and 2: Correct – they correctly specify the shape and complexity.\n• Other options: Incorrect – they either underestimate or misrepresent the complexity and dimensions."
+      },
+      {
+        "id": "trans-q67",
+        "difficulty": "H",
+        "text": "How does KV caching mathematically optimize autoregressive inference in Transformer models?",
+        "options": [
+          "It avoids recomputing dot products for tokens whose key and value representations are already computed.",
+          "It reduces the effective computation by only processing the new token's query against cached keys.",
+          "It caches the results of the softmax operation.",
+          "It eliminates the need for computing positional encodings.",
+          "It allows using unaltered parts of the attention matrix from previous steps.",
+          "It computes the entire attention matrix in a single matrix multiply.",
+          "It simplifies the gradient backpropagation through time.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 4],
+        "explanation": "KV caching stores the previously computed keys and values, which means that for each new token only its query needs to be computed against these cached values. This avoids redundant dot product calculations and reuses parts of the previous attention matrix. \nOption explanations:\n• Options 0, 1, and 4: Correct – they capture how caching reduces computations mathematically.\n• Other options: Incorrect – they do not accurately address the optimization achieved via KV caching."
+      },
+      {
+        "id": "trans-q68",
+        "difficulty": "H",
+        "text": "When stacking outputs from multiple attention heads before multiplying by Wo, why is concatenation preferred over summation?",
+        "options": [
+          "Concatenation preserves the distinct information from each head.",
+          "Summation may lead to loss of specialized features from individual heads.",
+          "Concatenation allows Wo to re-weight each head's contribution differently.",
+          "Summation quadruples the computational cost.",
+          "Concatenation is more memory efficient.",
+          "It ensures that each head’s output remains in its own subspace.",
+          "It simplifies the gradient flow during backpropagation.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 5],
+        "explanation": "Concatenation preserves the unique characteristics of each head, enabling the subsequent matrix Wo to learn individual weights for each contribution. Summing them could blur the distinctions between heads. \nOption explanations:\n• Options 0, 1, 2, and 5: Correct – they explain the advantages of concatenation in maintaining diverse features and flexible re-weighting.\n• Other options: Incorrect – they either misrepresent computational cost or are not central to the rationale."
+      },
+      {
+        "id": "trans-q69",
+        "difficulty": "H",
+        "text": "How does the multi-head latent attention approach in Deep Seek R1 affect the overall memory footprint during inference compared to standard Transformers?",
+        "options": [
+          "It reduces the key-value cache size by a factor of 57.",
+          "It eliminates the need to store any intermediate attention matrices.",
+          "It decreases redundant computation through efficient caching.",
+          "It increases the memory footprint by doubling the embedding dimension.",
+          "It optimizes memory by caching only the necessary parts of the keys and values.",
+          "It stores all query vectors to accelerate computation.",
+          "It scales memory linearly with input tokens.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 2, 4],
+        "explanation": "The multi-head latent attention approach reduces memory usage by significantly lowering the key-value cache size and by caching only necessary components to avoid redundant computations during inference. \nOption explanations:\n• Options 0, 2, and 4: Correct – they accurately reflect the improvements in memory efficiency.\n• Other options: Incorrect – they either describe contrary effects or include irrelevant details."
+      },
+      {
+        "id": "trans-q70",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly outline the sequence of mathematical operations performed to compute the final output of an attention block starting from the input matrix X?",
+        "options": [
+          "Multiply X by WQ to obtain the query matrix.",
+          "Multiply X by WK to obtain the key matrix.",
+          "Compute dot products between the query and key matrices.",
+          "Apply masking and scaling (division by √d) followed by softmax normalization.",
+          "Multiply X by WV to compute the value matrix.",
+          "Stack the outputs from multiple heads and multiply by Wo.",
+          "Add positional encodings to the resulting matrix.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 3, 4, 5],
+        "explanation": "The operations include transforming X into queries, keys, and values through multiplication with WQ, WK, and WV, computing dot products between queries and keys, applying masking/scaling/softmax, and then finally combining multiple head outputs with Wo. \nOption explanations:\n• Options 0 to 5: Correct – these accurately represent the complete computation pipeline.\n• Adding positional encodings (option 6) is a separate process and not part of the core attention block computations described here."
+      },
+      {
+        "id": "trans-q71",
+        "difficulty": "H",
+        "text": "Which choice or choices correctly describe the role and sensitivity of the softmax operation in attention score normalization?",
+        "options": [
+          "It converts raw scores into a probability distribution over tokens.",
+          "It is highly sensitive to the scale of its input values.",
+          "Without proper scaling, softmax can lead to near one-hot distributions.",
+          "It decreases computational complexity by reducing dimensionality.",
+          "It ensures that all output values sum to one.",
+          "It can introduce sparsity in the gradients.",
+          "It is used to compute the loss during training.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 4],
+        "explanation": "The softmax normalizes raw attention scores into probabilities, is sensitive to the scale of its inputs, can create nearly one-hot distributions if not scaled appropriately, and ensures that the output sums to one. \nOption explanations:\n• Options 0, 1, 2, and 4: Correct – they detail the function and sensitivity of the softmax.\n• Options 3, 5, and 6: Incorrect – they either mischaracterize softmax’s role or are unrelated."
+      },
+      {
+        "id": "trans-q72",
+        "difficulty": "H",
+        "text": "In Deep Seek’s implementation, increasing the number of attention heads and layers leads to which choice or choices regarding trade-offs in attention computation?",
+        "options": [
+          "Improved capacity to capture complex relationships.",
+          "Increased computational and memory demands.",
+          "Potential for more specialized attention mechanisms.",
+          "A reduction in overall training time due to parallelism.",
+          "A higher risk of overfitting without proper regularization.",
+          "An increased burden on the key-value caching system.",
+          "A simplification of the attention scoring process.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 4, 5],
+        "explanation": "Increasing the number of heads and layers generally improves the model’s representational capacity and specialization, but also raises computational/memory costs and can raise overfitting risks while putting more demands on caching mechanisms. \nOption explanations:\n• Options 0, 1, 2, 4, and 5: Correct – they outline the realistic trade-offs.\n• Option 3 (reduction in training time) and 6 (simplification): Incorrect – these do not describe the actual trade-offs encountered."
+      },
+      {
+        "id": "trans-q73",
+        "difficulty": "H",
+        "text": "Analyzing the dot product between queries and keys, which choice or choices correctly discuss the implications of using identical weight matrices for different tokens on the symmetry of the attention pattern?",
+        "options": [
+          "It ensures consistent feature extraction for similar tokens.",
+          "It results in similar query-key interactions for tokens with related contexts.",
+          "It can lead to redundancy if all tokens project to similar vectors.",
+          "It guarantees that the attention matrix is symmetric.",
+          "It requires masking to break any symmetry for autoregressive tasks.",
+          "It has no effect on the attention distribution.",
+          "It forces the model to focus solely on positional information.",
+          "I don't know"
+        ],
+        "correctOptionIndices": [0, 1, 2, 4],
+        "explanation": "Using identical weight matrices across tokens ensures that similar tokens produce similar query and key representations, which supports consistent feature extraction and can result in redundancy if not diversified. However, masking is essential to break symmetry in autoregressive tasks. \nOption explanations:\n• Options 0, 1, 2, and 4: Correct – they reflect the nuances of applying the same weight matrices to different tokens.\n• Options 3, 5, and 6: Incorrect – the attention matrix is not inherently symmetric due to masking, and these options misinterpret the role of weight matrices."
+      },
     ],
   },
 ];
@@ -1857,4 +2769,25 @@ export function arraysHaveSameElements(arr1, arr2) {
 
     // Check if every element in the sorted arrays matches at the same position
     return sortedArr1.every((value, index) => value === sortedArr2[index]);
+}
+
+// NEW: Persist new quiz data permanently by updating this file (requires Node.js environment)
+export function persistQuizData(newQuiz) {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const filePath = path.join(__dirname, 'quizData.js');
+    let content = fs.readFileSync(filePath, 'utf8');
+    // Format the new quiz object (indent nicely)
+    const insertion = JSON.stringify(newQuiz, null, 2) + ',\n';
+    // Find the quizData array declaration and insert the new quiz at the top.
+    const regex = /(export\s+const\s+quizData\s*=\s*\[)(\s*\n?)/;
+    if (!regex.test(content)) {
+      throw new Error("quizData array declaration not found in file.");
+    }
+    content = content.replace(regex, `$1\n${insertion}$2`);
+    fs.writeFileSync(filePath, content, 'utf8');
+  } catch (error) {
+    console.error("Error persisting quiz data:", error);
+  }
 }
