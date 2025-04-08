@@ -1,7 +1,8 @@
 // src/App.js
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 // Import the helper function and updated data structure
-import { quizData, DONT_KNOW_INDEX, arraysHaveSameElements, persistQuizData } from './quizData';
+import quizData from './mlQuizData.json';
+import { DONT_KNOW_INDEX, arraysHaveSameElements, persistQuizData } from './quizData';
 import './App.css';
 
 function formatTime(seconds) {
@@ -144,15 +145,17 @@ function App() {
       let newSelection;
 
       if (optionIndex === DONT_KNOW_INDEX) {
-        // If "I don't know" is selected, it's the only selection
-        newSelection = currentSelection.includes(DONT_KNOW_INDEX) ? [] : [DONT_KNOW_INDEX];
-      } else {
-        // If another option is selected
-        if (currentSelection.includes(optionIndex)) {
-          // Deselect: remove the option, ensure "I don't know" is also removed
-          newSelection = currentSelection.filter(idx => idx !== optionIndex && idx !== DONT_KNOW_INDEX);
+        // If "I don't know" is selected, toggle it without affecting other options
+        if (currentSelection.includes(DONT_KNOW_INDEX)) {
+          newSelection = currentSelection.filter(idx => idx !== DONT_KNOW_INDEX);
         } else {
-          // Select: add the option, ensure "I don't know" is removed
+          newSelection = [...currentSelection, DONT_KNOW_INDEX];
+        }
+      } else {
+        // For other options, toggle them while ensuring "I don't know" is removed
+        if (currentSelection.includes(optionIndex)) {
+          newSelection = currentSelection.filter(idx => idx !== optionIndex);
+        } else {
           newSelection = [...currentSelection.filter(idx => idx !== DONT_KNOW_INDEX), optionIndex];
         }
       }
